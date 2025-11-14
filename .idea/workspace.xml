@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4325055-f296-427d-8540-1de62c1d7f9b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/HW8_main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/self_py_fun/HW8Fun.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HW7.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/HW7.ipynb" afterDir="false" />
+    <list default="true" id="f4325055-f296-427d-8540-1de62c1d7f9b" name="Changes" comment="HW8">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/HW8-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/HW8-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HW8.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/HW8.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Quiz1.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Quiz3.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz3_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Quiz3_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/self_py_fun/Quiz3Fun.py" beforeDir="false" afterPath="$PROJECT_DIR$/self_py_fun/Quiz3Fun.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +44,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/temif/OneDrive/Documents/GitHub/BIOS-584",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog"
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -67,6 +62,19 @@
       <option name="presentableId" value="Default" />
       <updated>1761321269007</updated>
     </task>
+    <task id="LOCAL-00001" summary="HW8">
+      <option name="closed" value="true" />
+      <created>1762499169434</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762499169434</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="HW8" />
+    <option name="LAST_COMMIT_MESSAGE" value="HW8" />
   </component>
 </project>
