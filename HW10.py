@@ -26,8 +26,8 @@ bp_low = 0.5
 bp_upp = 6
 electrode_num = 16
 # Change the following directory to your own one.
-parent_dir = '/Users/tma33/Library/CloudStorage/OneDrive-EmoryUniversity/Emory/Rollins SPH/2025/BIOS-584/python_proj'
-parent_data_dir = '{}/data'.format(parent_dir)
+parent_dir = r'C:\Users\temif\OneDrive\Documents\GitHub\BIOS-584'
+parent_data_dir = f'{parent_dir}/data'
 time_index = np.linspace(0, 800, 25)
 electrode_name_ls = ['F3', 'Fz', 'F4', 'T7', 'C3', 'Cz', 'C4', 'T8', 'CP3', 'CP4', 'P3', 'Pz', 'P4', 'PO7', 'PO8', 'Oz']
 subject_name = 'K114'
@@ -58,8 +58,17 @@ eeg_trn_type = np.squeeze(eeg_trn_type, axis=1)
 # you should be able to obtain relevant data files named
 # eeg_frt_signal and eeg_frt_type
 # Write your own code below:
+# Step 1.2: FRT dataset
+frt_data_name = '{}_001_BCI_FRT_Truncated_Data_{}_{}'.format(subject_name, bp_low, bp_upp)
+frt_data_dir = '{}/{}.mat'.format(parent_data_dir, frt_data_name)
+eeg_frt_obj = sio.loadmat(frt_data_dir)
 
+eeg_frt_signal = eeg_frt_obj['Signal']
+print(eeg_frt_signal.shape)
 
+eeg_frt_type = eeg_frt_obj['Type']
+eeg_frt_type = np.squeeze(eeg_frt_type, axis=1)
+print(eeg_frt_type.shape)
 
 
 # You have completed the exploratory data analysis in HW7 and HW8.
@@ -74,8 +83,17 @@ eeg_trn_type = np.squeeze(eeg_trn_type, axis=1)
 # You do not need to modify the parameters of each classifier
 # except for LogisticRegression: set max_iter=1000
 # Write your own code below:
+X_trn = eeg_trn_signal
+y_trn = eeg_trn_type
 
+logistic_model = LR(max_iter=1000)
+logistic_model.fit(X_trn, y_trn)
 
+lda_model = LDA()
+lda_model.fit(X_trn, y_trn)
+
+svm_model = SVC(probability=True)
+svm_model.fit(X_trn, y_trn)
 
 
 
@@ -86,15 +104,21 @@ eeg_trn_type = np.squeeze(eeg_trn_type, axis=1)
 # You are asked to generate stimulus-level probability for each method on TRN files,
 # denoted as logistic_y_trn, lda_y_trn, and svm_y_trn.
 # Write your own code below:
-
-
-
+logistic_y_trn = logistic_model.predict_proba(X_trn)[:, 1].reshape(-1, 1)
+lda_y_trn = lda_model.predict_proba(X_trn)[:, 1].reshape(-1, 1)
+svm_y_trn = svm_model.predict_proba(X_trn)[:, 1].reshape(-1, 1)
 
 
 # Step 3.2: Prediction accuracy on FRT files
 # Similarly, you are asked to generate stimulus-level probability for each method on FRT files,
 # denoted as logistic_y_frt, lda_y_frt, and svm_y_frt.
 # Write your own code below:
+
+X_frt = eeg_frt_signal
+
+logistic_y_frt = logistic_model.predict_proba(X_frt)[:, 1].reshape(-1, 1)
+lda_y_frt = lda_model.predict_proba(X_frt)[:, 1].reshape(-1, 1)
+svm_y_frt = svm_model.predict_proba(X_frt)[:, 1].reshape(-1, 1)
 
 
 
@@ -103,7 +127,7 @@ eeg_trn_type = np.squeeze(eeg_trn_type, axis=1)
 # Step 4: Convert binary classification probability to character-level accuracy
 # This involves advanced data manipulation, so you do not need to write any new code.
 # Please run the following code to view the final results.
-'''
+
 eeg_trn_code = eeg_trn_obj['Code']
 eeg_frt_code = eeg_frt_obj['Code']
 char_frt = convert_raw_char_to_alphanumeric_stype(eeg_frt_obj['Text'])
@@ -176,7 +200,7 @@ print(svm_trn_accuracy)
 print(logistic_frt_accuracy)
 print(lda_frt_accuracy)
 print(svm_frt_accuracy)
-'''
+
 
 # Remember to answer two questions below:
 
@@ -189,6 +213,12 @@ print(svm_frt_accuracy)
 # lda_frt_accuracy = np.mean(lda_letter_mat_frt == np.array(list(char_frt))[:, np.newaxis], axis=0)
 # svm_trn_accuracy = np.mean(svm_letter_mat_trn == np.array(list(char_trn))[:, np.newaxis], axis=0)
 # svm_frt_accuracy = np.mean(svm_letter_mat_frt == np.array(list(char_frt))[:, np.newaxis], axis=0)
+#The accuracy of each of the models is calculated within these lines comparing the letters
+# predicted by the model to the letters that were actually true and then averaging the percentage of correct
+# letters predicted.
+# The character-level accuracies for all methods used are contained in the result.
 
 # Step 5: Summary
 # Which method performs the best? Why?
+# LDA usually performs the best. This is because the EEG data separates fairly
+# well with a simple linear boundary, and LDA is designed for that kind of problem.
